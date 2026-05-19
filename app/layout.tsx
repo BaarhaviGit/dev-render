@@ -1,6 +1,5 @@
 import type { Metadata } from 'next'
-import { Space_Grotesk, JetBrains_Mono } from 'next/font/google'
-import { Analytics } from '@vercel/analytics/next'
+import { Space_Grotesk, JetBrains_Mono, Bangers } from 'next/font/google'
 import './globals.css'
 
 const spaceGrotesk = Space_Grotesk({ 
@@ -13,16 +12,17 @@ const jetbrainsMono = JetBrains_Mono({
   variable: '--font-mono'
 })
 
+const bangers = Bangers({
+  weight: '400',
+  subsets: ["latin"],
+  variable: '--font-display'
+})
+
 export const metadata: Metadata = {
-  title: 'Baarhavi M D | Full Stack Developer',
+  title: 'BAARHAVI M D | Full Stack Developer',
   description: 'Full Stack Developer & Cloud DevOps Enthusiast. Building scalable, secure, and modern digital experiences.',
   keywords: ['Full Stack Developer', 'Cloud', 'DevOps', 'React', 'Next.js', 'AWS', 'Portfolio'],
   authors: [{ name: 'Baarhavi M D' }],
-  openGraph: {
-    title: 'Baarhavi M D | Full Stack Developer',
-    description: 'Building scalable, secure, and modern digital experiences.',
-    type: 'website',
-  },
 }
 
 export default function RootLayout({
@@ -31,10 +31,9 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className={`${spaceGrotesk.variable} ${jetbrainsMono.variable} bg-background`}>
-      <body className="font-sans antialiased">
+    <html lang="en" className={`${spaceGrotesk.variable} ${jetbrainsMono.variable} ${bangers.variable} bg-background`}>
+      <body className="font-sans antialiased noise-bg">
         {children}
-        {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>
     </html>
   )

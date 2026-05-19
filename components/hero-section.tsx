@@ -1,23 +1,21 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { Github, Linkedin, Download, ChevronDown } from "lucide-react"
 import { useEffect, useState } from "react"
 import Image from "next/image"
+import { Github, Linkedin, Download, ChevronDown } from "lucide-react"
 
 const titles = [
   "Full Stack Developer",
-  "Cloud & DevOps Enthusiast",
+  "Cloud & DevOps Enthusiast", 
   "Problem Solver",
   "Tech Innovator",
 ]
 
-const floatingIcons = [
-  { name: "React", delay: 0 },
-  { name: "Node.js", delay: 0.2 },
-  { name: "AWS", delay: 0.4 },
-  { name: "Python", delay: 0.6 },
-  { name: "TypeScript", delay: 0.8 },
+const stats = [
+  { label: "Projects Shipped", value: "10+" },
+  { label: "Internships", value: "2" },
+  { label: "Hackathons", value: "3+" },
 ]
 
 export function HeroSection() {
@@ -46,161 +44,153 @@ export function HeroSection() {
       },
       isDeleting ? 50 : 100
     )
-
     return () => clearTimeout(timeout)
   }, [displayText, isDeleting, titleIndex])
 
   return (
-    <section
-      id="home"
-      className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20"
-    >
-      {/* Background gradient orbs */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-1/4 -left-20 w-96 h-96 bg-primary/20 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute bottom-1/4 -right-20 w-96 h-96 bg-secondary/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: "1s" }} />
-      </div>
-
-      {/* Mysterious portrait image */}
-      <div className="absolute right-0 top-0 h-full w-1/2 hidden lg:block overflow-hidden">
-        <div className="relative h-full w-full">
-          <Image
-            src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/WhatsApp%20Image%202026-05-19%20at%2010.59.27%20AM-MKUSikgWOKlgdBdx4EJqpUCaLz07ZH.jpeg"
-            alt="Baarhavi M D"
-            fill
-            className="object-cover object-center opacity-30"
-            style={{
-              maskImage: "linear-gradient(to left, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0) 70%)",
-              WebkitMaskImage: "linear-gradient(to left, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0) 70%)",
-            }}
-            priority
-          />
-          <div className="absolute inset-0 bg-gradient-to-l from-primary/10 via-transparent to-transparent" />
-          <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent" />
-        </div>
-      </div>
-
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+    <section id="home" className="min-h-screen relative overflow-hidden">
+      {/* Background grid */}
+      <div 
+        className="absolute inset-0 opacity-10"
+        style={{
+          backgroundImage: `
+            linear-gradient(#39ff14 1px, transparent 1px),
+            linear-gradient(90deg, #39ff14 1px, transparent 1px)
+          `,
+          backgroundSize: '50px 50px'
+        }}
+      />
+      
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-12 relative z-10">
+        {/* Top section with title and image */}
+        <div className="grid lg:grid-cols-2 gap-8 items-start mb-12">
+          {/* Left - Big Title */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-center lg:text-left"
+            transition={{ duration: 0.6 }}
           >
-            <motion.p
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.2 }}
-              className="text-primary font-mono text-sm mb-4"
-            >
-              {"// Hello World, I'm"}
-            </motion.p>
+            <h1 className="font-[family-name:var(--font-display)] text-6xl sm:text-7xl lg:text-8xl text-foreground leading-none mb-6 glitch-text">
+              BUILDING
+              <br />
+              <span className="text-primary neon-text">SOLUTIONS</span>
+              <br />
+              THAT MATTER
+            </h1>
+            
+            <p className="text-muted-foreground text-lg mb-8 max-w-md">
+              I build full-stack apps, developer tools, and cloud-native products — from idea to deployed in days. Always at a hackathon, always shipping.
+            </p>
 
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3 }}
-              className="text-4xl sm:text-5xl lg:text-7xl font-bold mb-4"
-            >
-              <span className="text-gradient">Baarhavi M D</span>
-            </motion.h1>
-
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.4 }}
-              className="h-12 flex items-center justify-center lg:justify-start mb-6"
-            >
-              <span className="text-xl sm:text-2xl text-muted-foreground">
-                {displayText}
-                <span className="animate-pulse text-primary">|</span>
-              </span>
-            </motion.div>
-
-            <motion.p
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.5 }}
-              className="text-muted-foreground text-lg mb-8 max-w-xl mx-auto lg:mx-0"
-            >
-              Building scalable, secure, and modern digital experiences with
-              cutting-edge technologies.
-            </motion.p>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.6 }}
-              className="flex flex-wrap gap-4 justify-center lg:justify-start"
-            >
-              <a
-                href="#contact"
-                className="px-6 py-3 bg-gradient-to-r from-primary to-secondary text-primary-foreground font-medium rounded-lg hover:opacity-90 transition-opacity glow-purple"
-              >
-                Get in Touch
+            <div className="flex flex-wrap gap-4 mb-8">
+              <a href="#contact" className="brutal-btn">
+                {"LET'S CONNECT"}
               </a>
-              <a
-                href="/resume.pdf"
-                target="_blank"
-                className="px-6 py-3 glass text-foreground font-medium rounded-lg hover:bg-white/10 transition-colors flex items-center gap-2"
-              >
-                <Download size={18} />
-                Resume
+              <a href="/resume.pdf" target="_blank" className="brutal-btn bg-accent flex items-center gap-2">
+                <Download className="w-4 h-4" />
+                RESUME
               </a>
-            </motion.div>
+            </div>
 
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.7 }}
-              className="flex gap-4 mt-8 justify-center lg:justify-start"
-            >
-              <a
-                href="https://github.com/BaarhaviGit"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-3 glass rounded-full hover:bg-white/10 transition-colors group"
-                aria-label="GitHub Profile"
-              >
-                <Github className="w-5 h-5 group-hover:text-primary transition-colors" />
-              </a>
-              <a
-                href="https://linkedin.com/in/baarhavi-m-d"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-3 glass rounded-full hover:bg-white/10 transition-colors group"
-                aria-label="LinkedIn Profile"
-              >
-                <Linkedin className="w-5 h-5 group-hover:text-primary transition-colors" />
-              </a>
-            </motion.div>
+            {/* Social icons */}
+            <div className="flex gap-3">
+              {[
+                { Icon: Github, href: "https://github.com/BaarhaviGit", color: "bg-foreground text-background" },
+                { Icon: Linkedin, href: "https://linkedin.com/in/baarhavi-m-d", color: "bg-accent text-accent-foreground" },
+              ].map(({ Icon, href, color }, i) => (
+                <a
+                  key={i}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`p-3 ${color} border-2 border-background hover:scale-110 transition-transform`}
+                >
+                  <Icon className="w-5 h-5" />
+                </a>
+              ))}
+            </div>
           </motion.div>
 
-          {/* Floating tech icons */}
+          {/* Right - Image with stickers */}
           <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.8 }}
-            className="hidden lg:flex items-center justify-center relative h-96"
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="relative"
           >
-            {floatingIcons.map((icon, index) => (
-              <motion.div
-                key={icon.name}
-                initial={{ opacity: 0, scale: 0 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 1 + icon.delay }}
-                className="absolute glass px-4 py-2 rounded-lg text-sm font-mono text-primary animate-float"
-                style={{
-                  top: `${20 + (index % 3) * 30}%`,
-                  left: `${10 + (index % 4) * 20}%`,
-                  animationDelay: `${icon.delay}s`,
-                }}
-              >
-                {icon.name}
-              </motion.div>
-            ))}
+            <div className="relative comic-border bg-card overflow-hidden">
+              <Image
+                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/WhatsApp%20Image%202026-05-19%20at%2010.59.27%20AM-MKUSikgWOKlgdBdx4EJqpUCaLz07ZH.jpeg"
+                alt="Baarhavi M D"
+                width={500}
+                height={600}
+                className="w-full h-auto grayscale hover:grayscale-0 transition-all duration-500"
+                priority
+              />
+              {/* Overlay badges */}
+              <div className="absolute top-4 right-4 bg-primary text-primary-foreground px-3 py-1 font-[family-name:var(--font-display)] text-sm border-2 border-background rotate-3">
+                PRODUCT BUILDER
+              </div>
+              <div className="absolute bottom-4 left-4 bg-secondary text-secondary-foreground px-3 py-1 font-[family-name:var(--font-display)] text-sm border-2 border-background -rotate-2">
+                DEV TECH NERD
+              </div>
+              <div className="absolute top-1/2 left-4 bg-accent text-accent-foreground px-3 py-1 font-[family-name:var(--font-display)] text-sm border-2 border-background rotate-6">
+                OPEN SOURCE CONTRIBUTOR
+              </div>
+            </div>
+            
+            {/* Name tag */}
+            <motion.div 
+              initial={{ y: 20, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ delay: 0.5 }}
+              className="absolute -bottom-4 -right-4 bg-primary text-primary-foreground px-6 py-3 border-4 border-background font-[family-name:var(--font-display)] text-xl"
+            >
+              BAARHAVI M D
+            </motion.div>
           </motion.div>
+        </div>
+
+        {/* Stats row */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.6 }}
+          className="flex flex-wrap gap-4 mb-8"
+        >
+          {stats.map((stat, i) => (
+            <div key={i} className="comic-border bg-card px-6 py-3 flex items-center gap-3">
+              <span className="font-[family-name:var(--font-display)] text-3xl text-primary">{stat.value}</span>
+              <span className="text-sm text-muted-foreground uppercase">{stat.label}</span>
+            </div>
+          ))}
+        </motion.div>
+
+        {/* Typing text */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.7 }}
+          className="comic-border bg-card px-6 py-4 inline-block"
+        >
+          <span className="font-mono text-primary">{">"}</span>
+          <span className="font-mono text-foreground ml-2">{displayText}</span>
+          <span className="animate-pulse text-primary font-mono">_</span>
+        </motion.div>
+      </div>
+
+      {/* Marquee */}
+      <div className="border-y-4 border-primary bg-primary overflow-hidden py-3">
+        <div className="animate-marquee whitespace-nowrap flex">
+          {[...Array(2)].map((_, i) => (
+            <div key={i} className="flex items-center gap-8 mx-4">
+              {["PYTHON", "TYPESCRIPT", "AI AGENTS", "LLM APPS", "BROWSER AUTOMATION", "FULL STACK", "CLOUD", "DEVOPS"].map((tech) => (
+                <span key={tech} className="font-[family-name:var(--font-display)] text-2xl text-primary-foreground flex items-center gap-2">
+                  <span className="text-background">*</span> {tech}
+                </span>
+              ))}
+            </div>
+          ))}
         </div>
       </div>
 
@@ -208,15 +198,14 @@ export function HeroSection() {
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 1.5 }}
+        transition={{ delay: 1 }}
         className="absolute bottom-8 left-1/2 -translate-x-1/2"
       >
         <motion.div
           animate={{ y: [0, 10, 0] }}
           transition={{ duration: 1.5, repeat: Infinity }}
-          className="text-muted-foreground"
         >
-          <ChevronDown size={32} />
+          <ChevronDown className="w-8 h-8 text-primary" />
         </motion.div>
       </motion.div>
     </section>

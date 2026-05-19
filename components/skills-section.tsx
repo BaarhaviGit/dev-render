@@ -1,45 +1,27 @@
 "use client"
 
-import { motion } from "framer-motion"
-import { useInView } from "framer-motion"
+import { motion, useInView } from "framer-motion"
 import { useRef } from "react"
 
-const skillCategories = [
-  {
-    title: "Programming Languages",
-    skills: [
-      { name: "C", level: 85 },
-      { name: "Java", level: 80 },
-      { name: "Python", level: 90 },
-    ],
-  },
-  {
-    title: "Web Development",
-    skills: [
-      { name: "HTML/CSS", level: 95 },
-      { name: "JavaScript", level: 88 },
-      { name: "React JS", level: 85 },
-      { name: "Node.js", level: 82 },
-    ],
-  },
-  {
-    title: "Database & Cloud",
-    skills: [
-      { name: "SQL", level: 85 },
-      { name: "PostgreSQL", level: 80 },
-      { name: "Firebase", level: 78 },
-      { name: "AWS DynamoDB", level: 75 },
-      { name: "AWS Cognito", level: 72 },
-    ],
-  },
-  {
-    title: "Tools & Technologies",
-    skills: [
-      { name: "Git", level: 90 },
-      { name: "REST APIs", level: 88 },
-      { name: "n8n", level: 75 },
-    ],
-  },
+const skills = [
+  { name: "PYTHON", color: "bg-primary" },
+  { name: "JAVASCRIPT", color: "bg-accent" },
+  { name: "REACT", color: "bg-secondary" },
+  { name: "NODE.JS", color: "bg-primary" },
+  { name: "C", color: "bg-accent" },
+  { name: "JAVA", color: "bg-secondary" },
+  { name: "HTML/CSS", color: "bg-primary" },
+  { name: "GIT", color: "bg-accent" },
+  { name: "SQL", color: "bg-secondary" },
+  { name: "POSTGRESQL", color: "bg-primary" },
+  { name: "FIREBASE", color: "bg-accent" },
+  { name: "AWS", color: "bg-secondary" },
+  { name: "REST APIS", color: "bg-primary" },
+  { name: "N8N", color: "bg-accent" },
+  { name: "FLUTTER", color: "bg-secondary" },
+  { name: "FIGMA", color: "bg-primary" },
+  { name: "POSTMAN", color: "bg-accent" },
+  { name: "GOOGLE CLOUD", color: "bg-secondary" },
 ]
 
 export function SkillsSection() {
@@ -48,85 +30,90 @@ export function SkillsSection() {
 
   return (
     <section id="skills" className="py-24 relative" ref={ref}>
+      {/* Section header */}
+      <div className="border-y-4 border-primary bg-primary py-4 mb-16">
+        <div className="max-w-7xl mx-auto px-4 flex items-center justify-between">
+          <motion.h2 
+            initial={{ opacity: 0, x: -20 }}
+            animate={isInView ? { opacity: 1, x: 0 } : {}}
+            className="font-[family-name:var(--font-display)] text-5xl sm:text-6xl text-primary-foreground"
+          >
+            TECH ARSENAL!
+          </motion.h2>
+          <span className="text-primary-foreground font-mono text-sm hidden sm:block">MY CHAOTIC WEB SLINGER TOOLKIT</span>
+        </div>
+      </div>
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
+        {/* Speech bubble style skills */}
+        <motion.div 
+          initial={{ opacity: 0 }}
+          animate={isInView ? { opacity: 1 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="relative"
         >
-          <h2 className="text-3xl sm:text-4xl font-bold mb-4">
-            <span className="text-gradient">Skills & Expertise</span>
-          </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-primary to-secondary mx-auto rounded-full" />
+          {/* Skills as speech bubbles floating around */}
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6">
+            {skills.map((skill, index) => (
+              <motion.div
+                key={skill.name}
+                initial={{ opacity: 0, scale: 0, rotate: -10 }}
+                animate={isInView ? { 
+                  opacity: 1, 
+                  scale: 1, 
+                  rotate: (index % 3 - 1) * 3 
+                } : {}}
+                transition={{ 
+                  duration: 0.4, 
+                  delay: index * 0.05,
+                  type: "spring",
+                  stiffness: 200
+                }}
+                whileHover={{ 
+                  scale: 1.1, 
+                  rotate: 0,
+                  transition: { duration: 0.2 }
+                }}
+                className="relative group cursor-pointer"
+              >
+                {/* Speech bubble */}
+                <div className={`${skill.color} text-background px-4 py-3 border-3 border-background relative`}
+                  style={{ 
+                    clipPath: "polygon(0% 0%, 100% 0%, 100% 75%, 75% 75%, 50% 100%, 50% 75%, 0% 75%)",
+                    paddingBottom: "2rem"
+                  }}
+                >
+                  <span className="font-[family-name:var(--font-display)] text-sm sm:text-base whitespace-nowrap">
+                    {skill.name}
+                  </span>
+                </div>
+                
+                {/* Connecting line */}
+                <div className="absolute -bottom-2 left-1/2 w-0.5 h-4 bg-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity" />
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Center decoration - wire connections */}
+          <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-20">
+            <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
+              <path d="M10,50 Q25,20 50,50 T90,50" stroke="#39ff14" strokeWidth="0.2" fill="none" strokeDasharray="2,2" />
+              <path d="M10,30 Q40,60 90,30" stroke="#00d4ff" strokeWidth="0.2" fill="none" strokeDasharray="2,2" />
+              <path d="M10,70 Q60,40 90,70" stroke="#ff3864" strokeWidth="0.2" fill="none" strokeDasharray="2,2" />
+            </svg>
+          </div>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-8">
-          {skillCategories.map((category, categoryIndex) => (
-            <motion.div
-              key={category.title}
-              initial={{ opacity: 0, y: 30 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: categoryIndex * 0.15 }}
-              className="glass rounded-2xl p-6 hover:shadow-lg hover:shadow-primary/10 transition-all"
-            >
-              <h3 className="text-lg font-semibold mb-6 text-primary">
-                {category.title}
-              </h3>
-              <div className="space-y-5">
-                {category.skills.map((skill, skillIndex) => (
-                  <div key={skill.name}>
-                    <div className="flex justify-between mb-2">
-                      <span className="text-sm font-medium">{skill.name}</span>
-                      <span className="text-sm text-muted-foreground">
-                        {skill.level}%
-                      </span>
-                    </div>
-                    <div className="h-2 bg-muted rounded-full overflow-hidden">
-                      <motion.div
-                        initial={{ width: 0 }}
-                        animate={isInView ? { width: `${skill.level}%` } : {}}
-                        transition={{
-                          duration: 1,
-                          delay: categoryIndex * 0.15 + skillIndex * 0.1,
-                          ease: "easeOut",
-                        }}
-                        className="h-full bg-gradient-to-r from-primary to-secondary rounded-full relative"
-                      >
-                        <div className="absolute inset-0 bg-gradient-to-r from-transparent to-white/20" />
-                      </motion.div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </motion.div>
-          ))}
-        </div>
-
-        {/* Tech stack badges */}
+        {/* Floating connection button */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.6 }}
-          className="mt-12 text-center"
+          transition={{ delay: 0.8 }}
+          className="flex justify-center mt-16"
         >
-          <p className="text-muted-foreground mb-6">Technologies I work with</p>
-          <div className="flex flex-wrap justify-center gap-3">
-            {["React", "Next.js", "Node.js", "Python", "AWS", "PostgreSQL", "Firebase", "Git", "REST APIs", "Flutter"].map(
-              (tech, index) => (
-                <motion.span
-                  key={tech}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={isInView ? { opacity: 1, scale: 1 } : {}}
-                  transition={{ duration: 0.3, delay: 0.7 + index * 0.05 }}
-                  whileHover={{ scale: 1.1 }}
-                  className="px-4 py-2 glass rounded-full text-sm font-mono text-primary hover:bg-primary/20 transition-colors cursor-default"
-                >
-                  {tech}
-                </motion.span>
-              )
-            )}
-          </div>
+          <a href="#contact" className="brutal-btn text-xl font-[family-name:var(--font-display)]">
+            {"LET'S CONNECT"}
+          </a>
         </motion.div>
       </div>
     </section>

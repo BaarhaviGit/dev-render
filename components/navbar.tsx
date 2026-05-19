@@ -1,102 +1,97 @@
 "use client"
 
-import { motion } from "framer-motion"
-import Link from "next/link"
 import { useState, useEffect } from "react"
+import { motion, AnimatePresence } from "framer-motion"
 import { Menu, X } from "lucide-react"
 
 const navItems = [
-  { name: "Home", href: "#home" },
-  { name: "About", href: "#about" },
-  { name: "Skills", href: "#skills" },
-  { name: "Projects", href: "#projects" },
-  { name: "Experience", href: "#experience" },
-  { name: "Certifications", href: "#certifications" },
-  { name: "Achievements", href: "#achievements" },
-  { name: "Contact", href: "#contact" },
+  { name: "HOME", href: "#home" },
+  { name: "ABOUT", href: "#about" },
+  { name: "SKILLS", href: "#skills" },
+  { name: "PROJECTS", href: "#projects" },
+  { name: "XP", href: "#experience" },
+  { name: "CERTS", href: "#certifications" },
+  { name: "W's", href: "#achievements" },
+  { name: "HMU", href: "#contact" },
 ]
 
 export function Navbar() {
-  const [isScrolled, setIsScrolled] = useState(false)
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const [isOpen, setIsOpen] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50)
-    }
+    const handleScroll = () => setScrolled(window.scrollY > 50)
     window.addEventListener("scroll", handleScroll)
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
   return (
-    <motion.nav
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.5 }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? "glass py-3" : "py-5"
-      }`}
-    >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between">
-          <motion.div
-            whileHover={{ scale: 1.05 }}
-            className="text-xl font-bold text-gradient"
-          >
-            {"<Baarhavi />"}
-          </motion.div>
+    <>
+      <motion.button
+        initial={{ scale: 0 }}
+        animate={{ scale: 1 }}
+        onClick={() => setIsOpen(true)}
+        className={`fixed top-4 left-4 z-50 brutal-btn flex items-center gap-2 ${
+          scrolled ? "bg-primary" : "bg-primary"
+        }`}
+      >
+        <Menu className="w-5 h-5" />
+        <span className="font-[family-name:var(--font-display)] text-lg tracking-wide">MENU</span>
+      </motion.button>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-1">
-            {navItems.map((item, index) => (
-              <motion.div
-                key={item.name}
-                initial={{ opacity: 0, y: -20 }}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ x: "-100%" }}
+            animate={{ x: 0 }}
+            exit={{ x: "-100%" }}
+            transition={{ type: "tween", duration: 0.3 }}
+            className="fixed inset-0 z-50 bg-background border-r-4 border-primary"
+          >
+            <div className="p-8 h-full flex flex-col">
+              <button
+                onClick={() => setIsOpen(false)}
+                className="brutal-btn self-start flex items-center gap-2 mb-12"
+              >
+                <X className="w-5 h-5" />
+                <span className="font-[family-name:var(--font-display)] text-lg">CLOSE</span>
+              </button>
+
+              <motion.h2 
+                initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1 }}
+                className="font-[family-name:var(--font-display)] text-4xl text-primary mb-8 neon-text"
               >
-                <Link
-                  href={item.href}
-                  className="px-3 py-2 text-sm text-muted-foreground hover:text-foreground transition-colors relative group"
-                >
-                  {item.name}
-                  <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-primary to-secondary group-hover:w-full transition-all duration-300" />
-                </Link>
-              </motion.div>
-            ))}
-          </div>
+                NAVIGATION
+              </motion.h2>
 
-          {/* Mobile Menu Button */}
-          <button
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden p-2 text-foreground"
-            aria-label="Toggle menu"
-          >
-            {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
-        </div>
+              <nav className="flex flex-col gap-2">
+                {navItems.map((item, i) => (
+                  <motion.a
+                    key={item.name}
+                    href={item.href}
+                    initial={{ opacity: 0, x: -50 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: i * 0.05 }}
+                    onClick={() => setIsOpen(false)}
+                    className="group flex items-center gap-4 py-3 border-b-2 border-muted hover:border-primary transition-colors"
+                  >
+                    <span className="text-primary font-mono text-sm">0{i + 1}</span>
+                    <span className="font-[family-name:var(--font-display)] text-3xl md:text-5xl text-foreground group-hover:text-primary transition-colors glitch-text">
+                      {item.name}
+                    </span>
+                  </motion.a>
+                ))}
+              </nav>
 
-        {/* Mobile Navigation */}
-        {isMobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            className="md:hidden glass mt-4 rounded-lg p-4"
-          >
-            {navItems.map((item) => (
-              <Link
-                key={item.name}
-                href={item.href}
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="block py-2 text-muted-foreground hover:text-foreground transition-colors"
-              >
-                {item.name}
-              </Link>
-            ))}
+              <div className="mt-auto flex gap-4">
+                <a href="https://github.com/BaarhaviGit" target="_blank" rel="noopener noreferrer" className="brutal-btn text-sm">GitHub</a>
+                <a href="https://linkedin.com/in/baarhavi-m-d" target="_blank" rel="noopener noreferrer" className="brutal-btn text-sm bg-accent">LinkedIn</a>
+              </div>
+            </div>
           </motion.div>
         )}
-      </div>
-    </motion.nav>
+      </AnimatePresence>
+    </>
   )
 }
