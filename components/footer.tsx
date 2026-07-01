@@ -1,7 +1,7 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { Github, Linkedin, Heart, Twitter, Mail } from "lucide-react"
+import { Github, Linkedin, Terminal, Twitter, Mail } from "lucide-react"
 
 export function Footer() {
   const currentYear = new Date().getFullYear()
@@ -64,9 +64,9 @@ export function Footer() {
             transition={{ delay: 0.3 }}
             className="text-sm text-primary-foreground/80 flex items-center gap-1"
           >
-            © {currentYear} Made with{" "}
-            <Heart size={14} className="text-secondary fill-current" /> and lots of
-            caffeine.
+            © {currentYear} Engineered with{" "}
+            <Terminal size={14} className="text-secondary" /> and relentless
+            innovation.
           </motion.p>
         </div>
       </div>
