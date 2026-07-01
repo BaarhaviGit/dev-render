@@ -52,7 +52,7 @@ export function ContactSection() {
           >
             <div className="wanted-poster p-8 text-background">
               <div className="text-center mb-4">
-                <span className="text-xs text-background/60 font-mono">BOUNTY NO. 0718</span>
+                <span className="text-xs text-background/60 font-mono">STATUS: AVAILABLE</span>
               </div>
               
               <h3 className="font-[family-name:var(--font-display)] text-4xl text-center text-background mb-6">
@@ -101,7 +101,7 @@ export function ContactSection() {
           >
             <div className="comic-border bg-card p-8">
               <h3 className="font-[family-name:var(--font-display)] text-2xl text-primary mb-2">
-                DROP ME A LINE ON THE PROXY TRAIL
+                LET'S BUILD SOMETHING GREAT
               </h3>
               
               {/* Social buttons */}
@@ -123,7 +123,7 @@ export function ContactSection() {
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div>
                   <label className="block font-[family-name:var(--font-display)] text-sm text-primary mb-2">
-                    ALIAS
+                    NAME
                   </label>
                   <input
                     type="text"
@@ -137,7 +137,7 @@ export function ContactSection() {
 
                 <div>
                   <label className="block font-[family-name:var(--font-display)] text-sm text-primary mb-2">
-                    CONTACT SIGNAL
+                    CONTACT INFO
                   </label>
                   <input
                     type="text"
@@ -159,7 +159,7 @@ export function ContactSection() {
                     onChange={(e) => setFormState({ ...formState, message: e.target.value })}
                     required
                     className="w-full px-4 py-3 bg-muted border-2 border-primary text-foreground focus:outline-none focus:bg-muted/80 transition-colors resize-none"
-                    placeholder="What's the mission?"
+                    placeholder="How can I help you?"
                   />
                 </div>
 
