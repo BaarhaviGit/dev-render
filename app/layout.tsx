@@ -19,7 +19,7 @@ const bangers = Bangers({
 })
 
 export const metadata: Metadata = {
-  title: '🚀 Baarhavi M D | Cyber Portfolio ✨',
+  title: 'Dev Render | Portfolio',
   description: 'Full Stack Developer & Cloud DevOps Enthusiast. Building scalable, secure, and modern digital experiences.',
   keywords: ['Full Stack Developer', 'Cloud', 'DevOps', 'React', 'Next.js', 'AWS', 'Portfolio'],
   authors: [{ name: 'Baarhavi M D' }],
