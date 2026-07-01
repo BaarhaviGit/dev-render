@@ -1,25 +1,26 @@
 import type { Metadata } from 'next'
-import { Space_Grotesk, JetBrains_Mono, Bangers } from 'next/font/google'
+import { Chakra_Petch, Share_Tech_Mono, Caveat } from 'next/font/google'
 import './globals.css'
 
-const spaceGrotesk = Space_Grotesk({ 
+const chakra = Chakra_Petch({ 
+  weight: ['400', '500', '600', '700'],
   subsets: ["latin"],
   variable: '--font-sans'
 })
 
-const jetbrainsMono = JetBrains_Mono({ 
+const shareTechMono = Share_Tech_Mono({ 
+  weight: '400',
   subsets: ["latin"],
   variable: '--font-mono'
 })
 
-const bangers = Bangers({
-  weight: '400',
+const caveat = Caveat({
   subsets: ["latin"],
   variable: '--font-display'
 })
 
 export const metadata: Metadata = {
-  title: 'Dev Render | Portfolio',
+  title: 'Baarhavi',
   description: 'Full Stack Developer & Cloud DevOps Enthusiast. Building scalable, secure, and modern digital experiences.',
   keywords: ['Full Stack Developer', 'Cloud', 'DevOps', 'React', 'Next.js', 'AWS', 'Portfolio'],
   authors: [{ name: 'Baarhavi M D' }],
@@ -31,7 +32,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className={`${spaceGrotesk.variable} ${jetbrainsMono.variable} ${bangers.variable} bg-background`}>
+    <html lang="en" className={`${chakra.variable} ${shareTechMono.variable} ${caveat.variable} bg-background`}>
       <body className="font-sans antialiased noise-bg">
         {children}
       </body>
