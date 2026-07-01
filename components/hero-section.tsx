@@ -71,22 +71,22 @@ export function HeroSection() {
             transition={{ duration: 0.6 }}
           >
             <h1 className="font-[family-name:var(--font-display)] text-6xl sm:text-7xl lg:text-8xl text-foreground leading-none mb-6 glitch-text">
-              BUILDING
+              ARCHITECTING
               <br />
-              <span className="text-primary neon-text">SOLUTIONS</span>
+              <span className="text-primary neon-text">SCALABLE</span>
               <br />
-              THAT MATTER
+              SYSTEMS
             </h1>
             
             <p className="text-muted-foreground text-lg mb-8 max-w-md">
-              I build full-stack apps, developer tools, and cloud-native products — from idea to deployed in days. Always at a hackathon, always shipping.
+              Aspiring Full Stack Developer with expertise in Cloud and DevOps. Transforming ideas into high-performance applications through modern development practices.
             </p>
 
             <div className="flex flex-wrap gap-4 mb-8">
               <a href="#contact" className="brutal-btn">
                 {"LET'S CONNECT"}
               </a>
-              <a href="/resume.pdf" target="_blank" className="brutal-btn bg-accent flex items-center gap-2">
+              <a href="/Baarhaviresume (2) (1).pdf" target="_blank" className="brutal-btn bg-accent flex items-center gap-2">
                 <Download className="w-4 h-4" />
                 RESUME
               </a>
@@ -118,13 +118,13 @@ export function HeroSection() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="relative"
           >
-            <div className="relative comic-border bg-card overflow-hidden">
+            <div className="relative comic-border bg-card overflow-hidden max-w-sm mx-auto">
               <Image
-                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/WhatsApp%20Image%202026-05-19%20at%2010.59.27%20AM-MKUSikgWOKlgdBdx4EJqpUCaLz07ZH.jpeg"
+                src="/hero-image-new.jpg"
                 alt="Baarhavi M D"
-                width={500}
-                height={600}
-                className="w-full h-auto grayscale hover:grayscale-0 transition-all duration-500"
+                width={400}
+                height={500}
+                className="w-full h-[450px] object-cover object-top grayscale hover:grayscale-0 transition-all duration-500"
                 priority
               />
               {/* Overlay badges */}

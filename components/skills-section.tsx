@@ -4,24 +4,21 @@ import { motion, useInView } from "framer-motion"
 import { useRef } from "react"
 
 const skills = [
-  { name: "PYTHON", color: "bg-primary" },
-  { name: "JAVASCRIPT", color: "bg-accent" },
-  { name: "REACT", color: "bg-secondary" },
-  { name: "NODE.JS", color: "bg-primary" },
-  { name: "C", color: "bg-accent" },
-  { name: "JAVA", color: "bg-secondary" },
+  { name: "C", color: "bg-primary" },
+  { name: "JAVA", color: "bg-accent" },
+  { name: "PYTHON", color: "bg-secondary" },
   { name: "HTML/CSS", color: "bg-primary" },
-  { name: "GIT", color: "bg-accent" },
-  { name: "SQL", color: "bg-secondary" },
-  { name: "POSTGRESQL", color: "bg-primary" },
-  { name: "FIREBASE", color: "bg-accent" },
-  { name: "AWS", color: "bg-secondary" },
-  { name: "REST APIS", color: "bg-primary" },
-  { name: "N8N", color: "bg-accent" },
+  { name: "JAVASCRIPT", color: "bg-accent" },
+  { name: "REACT JS", color: "bg-secondary" },
+  { name: "NODE.JS", color: "bg-primary" },
+  { name: "SQL", color: "bg-accent" },
+  { name: "POSTGRESQL", color: "bg-secondary" },
+  { name: "FIREBASE", color: "bg-primary" },
+  { name: "AWS", color: "bg-accent" },
+  { name: "GIT", color: "bg-secondary" },
+  { name: "N8N", color: "bg-primary" },
+  { name: "REST APIS", color: "bg-accent" },
   { name: "FLUTTER", color: "bg-secondary" },
-  { name: "FIGMA", color: "bg-primary" },
-  { name: "POSTMAN", color: "bg-accent" },
-  { name: "GOOGLE CLOUD", color: "bg-secondary" },
 ]
 
 export function SkillsSection() {

@@ -2,7 +2,7 @@
 
 import { motion, useInView } from "framer-motion"
 import { useRef, useState } from "react"
-import { Mail, Phone, Linkedin, Github, Send, Twitter, Coffee, Heart, Sparkles } from "lucide-react"
+import { Mail, Phone, Linkedin, Github, Send, Twitter, Terminal, Server, Rocket } from "lucide-react"
 import Image from "next/image"
 
 export function ContactSection() {
@@ -55,12 +55,12 @@ export function ContactSection() {
                 <span className="text-xs text-background/60 font-mono">BOUNTY NO. 0718</span>
               </div>
               
-              <h3 className="font-[family-name:var(--font-display)] text-5xl text-center text-background mb-6">
-                WANTED
+              <h3 className="font-[family-name:var(--font-display)] text-4xl text-center text-background mb-6">
+                READY TO INNOVATE
               </h3>
               
               <p className="text-center text-background/70 font-[family-name:var(--font-display)] text-xl mb-6">
-                FOR BUILDING COOL STUFFS
+                IN FULL STACK & CLOUD
               </p>
 
               {/* Portrait */}
@@ -79,9 +79,9 @@ export function ContactSection() {
                 </h4>
                 <div className="flex justify-center gap-3 mt-3">
                   {[
-                    { icon: Coffee, label: "COFFEE" },
-                    { icon: Heart, label: "LOVE" },
-                    { icon: Sparkles, label: "COLLABORATION" },
+                    { icon: Terminal, label: "CLEAN CODE" },
+                    { icon: Server, label: "SCALABILITY" },
+                    { icon: Rocket, label: "INNOVATION" },
                   ].map((item) => (
                     <div key={item.label} className="flex items-center gap-1 bg-background/20 px-3 py-1 text-xs">
                       <item.icon className="w-3 h-3" />

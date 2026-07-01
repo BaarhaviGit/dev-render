@@ -2,30 +2,30 @@
 
 import { motion, useInView } from "framer-motion"
 import { useRef } from "react"
-import { Trophy, Users, Briefcase } from "lucide-react"
+import { Trophy, Users, Briefcase, Code } from "lucide-react"
 
 const achievements = [
   {
-    icon: Briefcase,
-    title: "TECHNICAL Q&A ROUND",
-    organization: "GKT Bangalore",
-    description: "Successfully cleared the technical question and answer round, demonstrating strong problem-solving abilities.",
-    highlight: "TECH EXCELLENCE",
+    icon: Code,
+    title: "LEETCODE PROBLEM SOLVING",
+    organization: "Data Structures & Algorithms",
+    description: "Solved 60+ coding problems on LeetCode, strengthening problem-solving and Data Structures & Algorithms skills.",
+    highlight: "ALGORITHMS",
     color: "bg-primary",
   },
   {
     icon: Trophy,
     title: "INTERNSHIP SELECTION",
     organization: "Praskla Technology",
-    description: "Selected for a competitive 8-month software engineering internship, working on real-world projects.",
+    description: "Selected for a Software Engineering Internship at Praskla Technology based on bootcamp and hackathon performance.",
     highlight: "PRO GROWTH",
     color: "bg-secondary",
   },
   {
     icon: Users,
     title: "VICE PRESIDENT",
-    organization: "CSE Tech Club, K.S.R College",
-    description: "Elected as Vice President of the Computer Science Engineering Technical Club, leading tech events.",
+    organization: "CSE Tech Club, K.S.R. College",
+    description: "Served as Vice President of the Computer Science and Engineering Tech Club at K.S.R. College of Engineering, leading technical events and workshops.",
     highlight: "LEADERSHIP",
     color: "bg-accent",
   },

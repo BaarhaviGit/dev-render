@@ -6,29 +6,21 @@ import { Building2, Calendar } from "lucide-react"
 
 const experiences = [
   {
-    number: "03",
-    title: "SOFTWARE ENGINEER INTERN",
+    number: "02",
+    title: "SOFTWARE ENGINEERING INTERN",
     company: "Praskla Technology",
-    companyLink: "https://praskla.com",
-    duration: "JAN 2024 - DEC 2024",
-    description: "Building internal tools and full-stack features as a software engineer intern at Praskla Technology.",
+    companyLink: "https://praskla-tech.netlify.app/",
+    duration: "8 Months",
+    description: "Worked on scalable web applications implementing REST APIs, authentication workflows, and database integration in agile environments.",
     technologies: ["React", "Node.js", "PostgreSQL", "REST APIs"],
   },
   {
-    number: "02",
-    title: "INDEPENDENT PRODUCT DEV",
-    company: "Self",
-    duration: "2023 - PRESENT",
-    description: "Shipped web applications (GenTech, Glimpse RAG, contest platforms) used by students.",
-    technologies: ["Next.js", "AI/ML", "Full Stack"],
-  },
-  {
     number: "01",
-    title: "FULL-STACK ENGINEER",
-    company: "Self-Taught",
-    duration: "2022 - 2024",
-    description: "Self-taught. Built and deployed personal projects while learning React, Node.js, Flask, and modern AI stack.",
-    technologies: ["React", "Flask", "Firebase", "Python"],
+    title: "CYBER SECURITY INTERN",
+    company: "Zero Touch, Hyderabad",
+    duration: "Internship",
+    description: "Gained exposure to vulnerability assessment, cyber threat analysis, and network security practices.",
+    technologies: ["Vulnerability Assessment", "Network Security", "Threat Analysis"],
   },
 ]
 
