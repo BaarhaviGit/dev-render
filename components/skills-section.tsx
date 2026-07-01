@@ -37,7 +37,7 @@ export function SkillsSection() {
           >
             TECH ARSENAL!
           </motion.h2>
-          <span className="text-primary-foreground font-mono text-sm hidden sm:block">CORE WEBZY STACK</span>
+          <span className="text-primary-foreground font-mono text-sm hidden sm:block">BAARHAVI'S TECH STACK</span>
         </div>
       </div>
 
