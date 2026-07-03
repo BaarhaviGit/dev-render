@@ -35,7 +35,7 @@ export function SkillsSection() {
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             className="font-[family-name:var(--font-display)] text-5xl sm:text-6xl text-primary-foreground"
           >
-            TECH ARSENAL!
+            ENGINEERING CORE
           </motion.h2>
           <span className="text-primary-foreground font-mono text-sm hidden sm:block">DEV RENDER TECH STACK</span>
         </div>

@@ -23,7 +23,7 @@ export function ContactSection() {
   const socials = [
     { icon: Linkedin, label: "LinkedIn", href: "https://linkedin.com/in/baarhavi-m-d" },
     { icon: Github, label: "Github", href: "https://github.com/BaarhaviGit" },
-    { icon: Twitter, label: "X (Twitter)", href: "#" },
+    { icon: Twitter, label: "X (Twitter)", href: "https://x.com/Baaruu_11" },
     { icon: Mail, label: "Email", href: "mailto:baarhavimathesh11@gmail.com" },
   ]
 

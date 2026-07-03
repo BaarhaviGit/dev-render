@@ -9,7 +9,7 @@ export function Footer() {
   const socials = [
     { icon: Github, href: "https://github.com/BaarhaviGit", label: "GitHub" },
     { icon: Linkedin, href: "https://linkedin.com/in/baarhavi-m-d", label: "LinkedIn" },
-    { icon: Twitter, href: "#", label: "Twitter" },
+    { icon: Twitter, href: "https://x.com/Baaruu_11", label: "Twitter" },
     { icon: Mail, href: "mailto:baarhavimathesh11@gmail.com", label: "Email" },
   ]
 
