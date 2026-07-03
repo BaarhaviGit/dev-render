@@ -86,10 +86,6 @@ export function HeroSection() {
               <a href="#contact" className="brutal-btn">
                 {"LET'S CONNECT"}
               </a>
-              <a href="/Baarhaviresume (2) (1).pdf" target="_blank" className="brutal-btn bg-accent flex items-center gap-2">
-                <Download className="w-4 h-4" />
-                RESUME
-              </a>
             </div>
 
             {/* Social icons */}
