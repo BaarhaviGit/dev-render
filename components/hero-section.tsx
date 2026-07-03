@@ -13,7 +13,7 @@ const titles = [
 ]
 
 const stats = [
-  { label: "Projects Shipped", value: "10+" },
+  { label: "Projects Shipped", value: "6+" },
   { label: "Internships", value: "2" },
   { label: "Hackathons", value: "3+" },
 ]
