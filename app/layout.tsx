@@ -1,28 +1,27 @@
 import type { Metadata } from 'next'
-import { Chakra_Petch, Share_Tech_Mono, Caveat } from 'next/font/google'
+import { Inter, JetBrains_Mono, Outfit } from 'next/font/google'
+import { SmoothScrolling } from '@/components/smooth-scrolling'
 import './globals.css'
 
-const chakra = Chakra_Petch({ 
-  weight: ['400', '500', '600', '700'],
+const inter = Inter({ 
   subsets: ["latin"],
   variable: '--font-sans'
 })
 
-const shareTechMono = Share_Tech_Mono({ 
-  weight: '400',
+const jetbrainsMono = JetBrains_Mono({ 
   subsets: ["latin"],
   variable: '--font-mono'
 })
 
-const caveat = Caveat({
+const outfit = Outfit({
   subsets: ["latin"],
   variable: '--font-display'
 })
 
 export const metadata: Metadata = {
-  title: 'Baarhavi',
+  title: 'Baarhavi | Software Engineer',
   description: 'Full Stack Developer & Cloud DevOps Enthusiast. Building scalable, secure, and modern digital experiences.',
-  keywords: ['Full Stack Developer', 'Cloud', 'DevOps', 'React', 'Next.js', 'AWS', 'Portfolio'],
+  keywords: ['Software Engineer', 'Full Stack Developer', 'Cloud', 'DevOps', 'React', 'Next.js', 'AWS', 'Portfolio'],
   authors: [{ name: 'Baarhavi M D' }],
 }
 
@@ -32,9 +31,11 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className={`${chakra.variable} ${shareTechMono.variable} ${caveat.variable} bg-background`}>
-      <body className="font-sans antialiased noise-bg">
-        {children}
+    <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable} ${outfit.variable} bg-background`}>
+      <body className="font-sans antialiased">
+        <SmoothScrolling>
+          {children}
+        </SmoothScrolling>
       </body>
     </html>
   )
