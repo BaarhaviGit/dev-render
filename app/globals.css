@@ -1,35 +1,37 @@
-@import 'tailwindcss';
-@import 'tw-animate-css';
+@import "tailwindcss";
 
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  --background: #ffffff;
-  --foreground: #404145;
-  --card: #ffffff;
-  --card-foreground: #222325;
-  --primary: #1dbf73;
-  --primary-foreground: #ffffff;
-  --secondary: #fafafa;
-  --secondary-foreground: #222325;
-  --accent: #f5f5f5;
-  --accent-foreground: #222325;
-  --muted: #f5f5f5;
-  --muted-foreground: #74767e;
-  --border: #e4e5e7;
-  --input: #e4e5e7;
-  --ring: #1dbf73;
-  --radius: 0.5rem;
+  --background: #07090e;
+  --foreground: #f1f5f9;
+  --card: #0d121f;
+  --card-foreground: #f1f5f9;
+  --card-hover: #131b2e;
+  --primary: #10b981;
+  --primary-foreground: #022c22;
+  --secondary: #06b6d4;
+  --secondary-foreground: #083344;
+  --accent: #3b82f6;
+  --accent-foreground: #ffffff;
+  --muted: #141c2e;
+  --muted-foreground: #94a3b8;
+  --border: rgba(255, 255, 255, 0.08);
+  --border-hover: rgba(16, 185, 129, 0.35);
+  --input: #101626;
+  --ring: #10b981;
+  --radius: 0.75rem;
 }
 
 @theme inline {
-  --font-sans: var(--font-sans), 'Inter', system-ui, sans-serif;
-  --font-mono: var(--font-mono), 'JetBrains Mono', monospace;
-  --font-display: var(--font-display), 'Outfit', sans-serif;
+  --font-sans: var(--font-sans), system-ui, -apple-system, sans-serif;
+  --font-mono: var(--font-mono), monospace;
+  --font-display: var(--font-display), system-ui, sans-serif;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
   --color-card-foreground: var(--card-foreground);
+  --color-card-hover: var(--card-hover);
   --color-primary: var(--primary);
   --color-primary-foreground: var(--primary-foreground);
   --color-secondary: var(--secondary);
@@ -39,6 +41,7 @@
   --color-muted: var(--muted);
   --color-muted-foreground: var(--muted-foreground);
   --color-border: var(--border);
+  --color-border-hover: var(--border-hover);
   --color-input: var(--input);
   --color-ring: var(--ring);
   --radius-sm: calc(var(--radius) - 4px);
@@ -52,24 +55,80 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground antialiased selection:bg-primary/20 selection:text-primary;
+    @apply bg-background text-foreground antialiased selection:bg-emerald-500/20 selection:text-emerald-300;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
   }
   html {
     scroll-behavior: smooth;
   }
 }
 
+/* Glassmorphism & Surface Utilities */
+.glass-panel {
+  background: rgba(13, 18, 31, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.glass-card {
+  background: linear-gradient(180deg, rgba(16, 24, 39, 0.7) 0%, rgba(13, 18, 31, 0.85) 100%);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-card:hover {
+  border-color: rgba(16, 185, 129, 0.35);
+  box-shadow: 0 12px 36px -12px rgba(16, 185, 129, 0.15), 0 0 0 1px rgba(16, 185, 129, 0.15);
+  transform: translateY(-2px);
+}
+
+/* Gradients */
+.gradient-text {
+  background: linear-gradient(135deg, #34d399 0%, #10b981 40%, #06b6d4 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.gradient-text-subtle {
+  background: linear-gradient(180deg, #ffffff 0%, #cbd5e1 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.glow-emerald {
+  box-shadow: 0 0 40px -10px rgba(16, 185, 129, 0.25);
+}
+
+/* Grid Background */
+.engineering-grid {
+  background-size: 40px 40px;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+}
+
+.dots-grid {
+  background-size: 24px 24px;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+}
+
 /* Custom Minimal Scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 7px;
 }
+
 ::-webkit-scrollbar-track {
-  background: #f5f5f5;
+  background: #07090e;
 }
+
 ::-webkit-scrollbar-thumb {
-  background: #d4d5d8;
+  background: #1e293b;
   border-radius: 4px;
 }
+
 ::-webkit-scrollbar-thumb:hover {
-  background: #1dbf73;
+  background: #334155;
 }

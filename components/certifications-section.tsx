@@ -1,74 +1,120 @@
 "use client"
 
-import { motion, useInView } from "framer-motion"
-import { useRef } from "react"
-import { Award } from "lucide-react"
+import { motion } from "framer-motion"
+import { Award, Cloud, Terminal, CheckCircle2, ArrowUpRight, ShieldCheck, Sparkles } from "lucide-react"
 
 const certifications = [
   {
-    title: "AWS CERTIFIED CLOUD PRACTITIONER",
-    issuer: "Amazon Web Services",
-    description: "Fundamental understanding of AWS Cloud concepts, services, security, and pricing.",
-    color: "bg-accent",
+    title: "AWS Certified Cloud Practitioner",
+    issuer: "Amazon Web Services (AWS)",
+    badge: "GLOBAL CLOUD CERTIFICATION",
+    description: "Validated foundational knowledge of AWS Cloud architecture, high-availability concepts, core infrastructure (Compute, Storage, Networking, Databases), IAM security policies, and cost optimization.",
+    skills: ["AWS Cloud", "IAM Security", "DynamoDB", "Cognito", "Cloud Architecture"],
+    verified: true,
+    highlight: true,
   },
   {
-    title: "PRASKLA HACKATHON",
+    title: "Praskla Technology Hackathon",
     issuer: "Praskla Technology",
-    description: "Recognition for outstanding performance and innovative problem-solving.",
-    color: "bg-secondary",
+    badge: "PRODUCT HACKATHON",
+    description: "Architected and engineered a comprehensive student hostel accommodation, room allocation, and fee ledger management solution under competitive agile constraints.",
+    skills: ["Full Stack", "Database Design", "Agile Sprints", "Product Delivery"],
+    verified: true,
+    highlight: false,
   },
   {
-    title: "TNWISE HACKATHON",
-    issuer: "TNWISE",
-    description: "Participated and showcased innovative solutions in the state-level hackathon.",
-    color: "bg-primary",
+    title: "TNWISE State Hackathon",
+    issuer: "Tamil Nadu State Technical Initiative",
+    badge: "STATE-LEVEL COMPETITION",
+    description: "Collaborated in an intensive state-level technical hackathon, conceptualizing and rapidly prototyping an end-to-end software solution for real-world problem statements.",
+    skills: ["Problem Solving", "Rapid Prototyping", "Team Engineering"],
+    verified: true,
+    highlight: false,
   },
 ]
 
 export function CertificationsSection() {
-  const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, margin: "-100px" })
-
   return (
-    <section id="certifications" className="py-24 relative" ref={ref}>
-      {/* Section header */}
-      <div className="border-y-4 border-primary bg-muted py-4 mb-16">
-        <div className="max-w-7xl mx-auto px-4 flex items-center justify-between">
-          <motion.h2 
-            initial={{ opacity: 0, x: -20 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            className="font-[family-name:var(--font-display)] text-5xl sm:text-6xl text-primary neon-text"
-          >
-            CERTIFICATIONS
-          </motion.h2>
+    <section id="certifications" className="py-24 relative overflow-hidden bg-[#07090e] border-t border-white/5">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        
+        {/* Section Header */}
+        <div className="text-center max-w-2xl mx-auto mb-16">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full glass-panel text-xs text-emerald-400 border-emerald-500/30 mb-3">
+            <Award className="w-3.5 h-3.5" />
+            <span className="font-mono uppercase tracking-wider font-semibold">Verified Credentials</span>
+          </div>
+          <h2 className="font-[family-name:var(--font-display)] text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
+            Certifications & <span className="gradient-text">Hackathons</span>
+          </h2>
+          <p className="text-muted-foreground text-sm sm:text-base mt-2">
+            Industry cloud validation and competitive hackathon engineering awards.
+          </p>
         </div>
-      </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid md:grid-cols-3 gap-8">
-          {certifications.map((cert, index) => (
+        {/* Certifications Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {certifications.map((cert, idx) => (
             <motion.div
               key={cert.title}
-              initial={{ opacity: 0, y: 30, rotate: -5 }}
-              animate={isInView ? { opacity: 1, y: 0, rotate: (index - 1) * 2 } : {}}
-              transition={{ duration: 0.5, delay: index * 0.15 }}
-              whileHover={{ rotate: 0, scale: 1.02 }}
-              className="comic-border bg-card overflow-hidden group"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4, delay: idx * 0.1 }}
+              className={`glass-card rounded-2xl p-6 border flex flex-col justify-between transition-all duration-300 ${
+                cert.highlight
+                  ? "border-emerald-500/40 bg-[#0c1424] shadow-[0_0_35px_rgba(16,185,129,0.12)]"
+                  : "border-white/10 hover:border-emerald-500/30"
+              }`}
             >
-              <div className={`h-2 ${cert.color}`} />
-              <div className="p-6">
-                <div className={`inline-flex p-3 ${cert.color} text-background mb-4`}>
-                  <Award size={24} />
+              <div>
+                {/* Header Badge */}
+                <div className="flex items-center justify-between gap-2 mb-4">
+                  <span className="text-[10px] font-mono font-bold tracking-wider px-2.5 py-1 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/30">
+                    {cert.badge}
+                  </span>
+                  {cert.highlight && (
+                    <span className="flex items-center gap-1 text-[11px] font-mono text-emerald-400 font-semibold">
+                      <Sparkles className="w-3 h-3" />
+                      Featured
+                    </span>
+                  )}
                 </div>
-                <h3 className="font-[family-name:var(--font-display)] text-xl text-foreground mb-2 group-hover:text-primary transition-colors">
+
+                {/* Title & Issuer */}
+                <h3 className="font-[family-name:var(--font-display)] text-xl font-bold text-white mb-1">
                   {cert.title}
                 </h3>
-                <p className="text-sm text-primary mb-3 font-bold">
+                <p className="text-xs font-mono text-cyan-400 mb-4 font-medium">
                   {cert.issuer}
                 </p>
-                <p className="text-sm text-muted-foreground">
+
+                {/* Description */}
+                <p className="text-slate-300 text-xs sm:text-sm leading-relaxed mb-6">
                   {cert.description}
                 </p>
+              </div>
+
+              {/* Skills Footer */}
+              <div className="pt-4 border-t border-white/5 space-y-3">
+                <div className="flex flex-wrap gap-1.5">
+                  {cert.skills.map((s) => (
+                    <span
+                      key={s}
+                      className="text-[10px] font-mono px-2 py-0.5 rounded bg-white/5 text-slate-300 border border-white/5"
+                    >
+                      {s}
+                    </span>
+                  ))}
+                </div>
+
+                <div className="flex items-center justify-between text-[11px] font-mono text-muted-foreground pt-1">
+                  <span className="flex items-center gap-1 text-emerald-400">
+                    <CheckCircle2 className="w-3.5 h-3.5" />
+                    Verified Credential
+                  </span>
+                  <ShieldCheck className="w-4 h-4 text-emerald-400" />
+                </div>
               </div>
             </motion.div>
           ))}
