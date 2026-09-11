@@ -1,117 +1,125 @@
 "use client"
 
-import { motion, useInView } from "framer-motion"
-import { useRef } from "react"
+import { motion } from "framer-motion"
+import { SectionHeader } from "@/components/section-header"
 
-const skills = [
-  { name: "C", color: "bg-primary" },
-  { name: "JAVA", color: "bg-accent" },
-  { name: "PYTHON", color: "bg-secondary" },
-  { name: "HTML/CSS", color: "bg-primary" },
-  { name: "JAVASCRIPT", color: "bg-accent" },
-  { name: "REACT JS", color: "bg-secondary" },
-  { name: "NODE.JS", color: "bg-primary" },
-  { name: "SQL", color: "bg-accent" },
-  { name: "POSTGRESQL", color: "bg-secondary" },
-  { name: "FIREBASE", color: "bg-primary" },
-  { name: "AWS", color: "bg-accent" },
-  { name: "GIT", color: "bg-secondary" },
-  { name: "N8N", color: "bg-primary" },
-  { name: "REST APIS", color: "bg-accent" },
-  { name: "FLUTTER", color: "bg-secondary" },
+const skillGroups = [
+  {
+    id: "LANG",
+    title: "Languages",
+    description: "core runtime languages",
+    accent: "border-primary/40",
+    label: "text-primary",
+    skills: ["C", "JAVA", "PYTHON", "JAVASCRIPT", "TYPESCRIPT"],
+  },
+  {
+    id: "FE",
+    title: "Frontend",
+    description: "interfaces & rendering",
+    accent: "border-accent/40",
+    label: "text-accent",
+    skills: ["HTML/CSS", "REACT JS", "NEXT.JS", "FLUTTER", "TAILWIND"],
+  },
+  {
+    id: "BE",
+    title: "Backend & Data",
+    description: "logic, apis & storage",
+    accent: "border-secondary/40",
+    label: "text-secondary",
+    skills: ["NODE.JS", "REST APIS", "SQL", "POSTGRESQL", "FIREBASE"],
+  },
+  {
+    id: "CLOUD",
+    title: "Cloud & DevOps",
+    description: "deploy, automate, observe",
+    accent: "border-primary/40",
+    label: "text-primary",
+    skills: ["AWS", "DOCKER", "GIT", "N8N", "CI/CD"],
+  },
+]
+
+const rings = [
+  { code: "R1", label: "Build", detail: "applications worth deploying" },
+  { code: "R2", label: "Ship", detail: "into a cloud-backed runtime" },
+  { code: "R3", label: "Automate", detail: "release, infra & workflows" },
 ]
 
 export function SkillsSection() {
-  const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, margin: "-100px" })
-
   return (
-    <section id="skills" className="py-24 relative" ref={ref}>
-      {/* Section header */}
-      <div className="border-y-4 border-primary bg-primary py-4 mb-16">
-        <div className="max-w-7xl mx-auto px-4 flex items-center justify-between">
-          <motion.h2 
-            initial={{ opacity: 0, x: -20 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            className="font-[family-name:var(--font-display)] text-5xl sm:text-6xl text-primary-foreground"
-          >
-            ENGINEERING CORE
-          </motion.h2>
-          <span className="text-primary-foreground font-mono text-sm hidden sm:block">DEV RENDER TECH STACK</span>
+    <section id="skills" className="py-24 relative">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+        <SectionHeader index="03" title="ENGINEERING CORE" subtitle="stack · topology diagram" />
+
+        {/* Pipeline rings */}
+        <div className="flex flex-col md:flex-row gap-3 mb-14">
+          {rings.map((ring, i) => (
+            <motion.div
+              key={ring.code}
+              initial={{ opacity: 0, y: 12 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.08 }}
+              className="flex-1 flex items-center gap-4 border border-border bg-white px-5 py-4"
+            >
+              <span className="font-mono text-2xl font-semibold text-primary">{ring.code}</span>
+              <div>
+                <p className="font-display font-semibold text-sm uppercase tracking-wide">{ring.label}</p>
+                <p className="font-mono text-[11px] text-muted-foreground">{ring.detail}</p>
+              </div>
+              <span className="ml-auto text-muted-foreground font-mono text-xs">→</span>
+            </motion.div>
+          ))}
         </div>
-      </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Speech bubble style skills */}
-        <motion.div 
-          initial={{ opacity: 0 }}
-          animate={isInView ? { opacity: 1 } : {}}
-          transition={{ duration: 0.6 }}
-          className="relative"
-        >
-          {/* Skills as speech bubbles floating around */}
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6">
-            {skills.map((skill, index) => (
-              <motion.div
-                key={skill.name}
-                initial={{ opacity: 0, scale: 0, rotate: -10 }}
-                animate={isInView ? { 
-                  opacity: 1, 
-                  scale: 1, 
-                  rotate: (index % 3 - 1) * 3 
-                } : {}}
-                transition={{ 
-                  duration: 0.4, 
-                  delay: index * 0.05,
-                  type: "spring",
-                  stiffness: 200
-                }}
-                whileHover={{ 
-                  scale: 1.1, 
-                  rotate: 0,
-                  transition: { duration: 0.2 }
-                }}
-                className="relative group cursor-pointer"
-              >
-                {/* Speech bubble */}
-                <div className={`${skill.color} text-background px-4 py-3 border-3 border-background relative`}
-                  style={{ 
-                    clipPath: "polygon(0% 0%, 100% 0%, 100% 75%, 75% 75%, 50% 100%, 50% 75%, 0% 75%)",
-                    paddingBottom: "2rem"
-                  }}
-                >
-                  <span className="font-[family-name:var(--font-display)] text-sm sm:text-base whitespace-nowrap">
-                    {skill.name}
-                  </span>
+        {/* Skill group nodes */}
+        <div className="grid md:grid-cols-2 gap-6">
+          {skillGroups.map((group, gi) => (
+            <motion.div
+              key={group.id}
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: gi * 0.1 }}
+              className="relative"
+            >
+              {/* node wire from left rail */}
+              <div className="hidden md:block absolute -left-4 top-1/2 w-4 border-t border-dashed border-border" />
+
+              <div className={`border-2 ${group.accent} bg-white p-6 corner-marks`}>
+                <div className="flex items-baseline justify-between mb-1">
+                  <h3 className={`font-display font-bold uppercase tracking-wide ${group.label}`}>
+                    {group.title}
+                  </h3>
+                  <span className="font-mono text-[10px] text-muted-foreground">[{group.id}]</span>
                 </div>
-                
-                {/* Connecting line */}
-                <div className="absolute -bottom-2 left-1/2 w-0.5 h-4 bg-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity" />
-              </motion.div>
-            ))}
-          </div>
+                <p className="font-mono text-[11px] text-muted-foreground mb-5">{group.description}</p>
 
-          {/* Center decoration - wire connections */}
-          <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-20">
-            <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
-              <path d="M10,50 Q25,20 50,50 T90,50" stroke="#39ff14" strokeWidth="0.2" fill="none" strokeDasharray="2,2" />
-              <path d="M10,30 Q40,60 90,30" stroke="#00d4ff" strokeWidth="0.2" fill="none" strokeDasharray="2,2" />
-              <path d="M10,70 Q60,40 90,70" stroke="#ff3864" strokeWidth="0.2" fill="none" strokeDasharray="2,2" />
-            </svg>
-          </div>
-        </motion.div>
+                <div className="flex flex-wrap gap-2">
+                  {group.skills.map((skill, si) => (
+                    <motion.span
+                      key={skill}
+                      initial={{ opacity: 0, scale: 0.9 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: gi * 0.1 + si * 0.05 }}
+                      className="tech-tag"
+                    >
+                      {skill}
+                    </motion.span>
+                  ))}
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
 
-        {/* Floating connection button */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ delay: 0.8 }}
-          className="flex justify-center mt-16"
-        >
-          <a href="#contact" className="brutal-btn text-xl font-[family-name:var(--font-display)]">
-            {"LET'S CONNECT"}
-          </a>
-        </motion.div>
+        {/* Legend */}
+        <div className="mt-10 flex flex-wrap items-center gap-6 border-t border-border pt-6 font-mono text-[11px] uppercase tracking-widest text-muted-foreground">
+          <span>legend:</span>
+          <span className="flex items-center gap-2"><span className="w-4 h-4 bg-primary/15 border border-primary" /> production-ready</span>
+          <span className="flex items-center gap-2"><span className="w-4 h-4 bg-accent/15 border border-accent" /> daily driver</span>
+          <span className="flex items-center gap-2"><span className="w-4 h-4 bg-secondary/15 border border-secondary" /> exploring</span>
+        </div>
       </div>
     </section>
   )

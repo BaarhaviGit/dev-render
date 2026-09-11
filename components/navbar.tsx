@@ -3,16 +3,17 @@
 import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { Menu, X } from "lucide-react"
+import Link from "next/link"
 
 const navItems = [
-  { name: "HOME", href: "#home" },
-  { name: "ABOUT", href: "#about" },
-  { name: "SKILLS", href: "#skills" },
-  { name: "PROJECTS", href: "#projects" },
-  { name: "XP", href: "#experience" },
-  { name: "CERTS", href: "#certifications" },
-  { name: "W's", href: "#achievements" },
-  { name: "HMU", href: "#contact" },
+  { index: "01", name: "PROFILE", href: "#home" },
+  { index: "02", name: "ABOUT", href: "#about" },
+  { index: "03", name: "SKILLS", href: "#skills" },
+  { index: "04", name: "PROJECTS", href: "#projects" },
+  { index: "05", name: "EXPERIENCE", href: "#experience" },
+  { index: "06", name: "CREDENTIALS", href: "#certifications" },
+  { index: "07", name: "ACHIEVEMENTS", href: "#achievements" },
+  { index: "08", name: "CONTACT", href: "#contact" },
 ]
 
 export function Navbar() {
@@ -20,24 +21,67 @@ export function Navbar() {
   const [scrolled, setScrolled] = useState(false)
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 50)
+    const handleScroll = () => setScrolled(window.scrollY > 24)
     window.addEventListener("scroll", handleScroll)
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
   return (
     <>
-      <motion.button
-        initial={{ scale: 0 }}
-        animate={{ scale: 1 }}
-        onClick={() => setIsOpen(true)}
-        className={`fixed top-4 left-4 z-50 brutal-btn flex items-center gap-2 ${
-          scrolled ? "bg-primary" : "bg-primary"
+      <header
+        className={`fixed top-0 inset-x-0 z-50 bg-background/95 backdrop-blur border-b transition-shadow ${
+          scrolled ? "shadow-[0_2px_0_rgba(31,91,214,0.15)]" : ""
         }`}
       >
-        <Menu className="w-5 h-5" />
-        <span className="font-[family-name:var(--font-display)] text-lg tracking-wide">MENU</span>
-      </motion.button>
+        <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-6">
+          <a href="#home" className="flex items-center gap-3 group shrink-0">
+            <span className="font-mono text-sm font-semibold tracking-widest text-foreground group-hover:text-primary transition-colors">
+              BAARHAVI<span className="text-primary">_M_D</span>
+            </span>
+            <span className="hidden xl:block h-5 w-px bg-border" />
+            <span className="hidden xl:block font-mono text-[10px] uppercase tracking-widest text-muted-foreground whitespace-nowrap">
+              SWE · Cloud &amp; DevOps
+            </span>
+          </a>
+
+          <nav className="hidden lg:flex items-center">
+            {navItems
+              .filter((item) => item.href !== "#contact")
+              .map((item) => (
+                <a
+                  key={item.name}
+                  href={item.href}
+                  className="font-mono text-[11px] uppercase tracking-wider text-muted-foreground hover:text-primary transition-colors px-3 py-2 whitespace-nowrap"
+                >
+                  <span className="text-primary/50 mr-1.5">{item.index}</span>
+                  {item.name}
+                </a>
+              ))}
+          </nav>
+
+          <div className="flex items-center gap-3 shrink-0">
+            <span className="hidden xl:flex items-center gap-2 font-mono text-[10px] uppercase tracking-wider text-muted-foreground whitespace-nowrap">
+              <span className="w-2 h-2 rounded-full bg-accent animate-status-pulse" />
+              Open to work
+            </span>
+            <a
+              href="#contact"
+              className="hidden md:inline-flex items-center font-mono text-[11px] uppercase tracking-wider text-white bg-primary px-4 py-2 hover:bg-foreground transition-colors"
+            >
+              Contact
+            </a>
+            <button
+              onClick={() => setIsOpen(true)}
+              suppressHydrationWarning
+              className="lg:hidden inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-wider text-primary border border-primary px-3 py-2 hover:bg-primary hover:text-white transition-colors"
+              aria-label="Open menu"
+            >
+              <Menu className="w-4 h-4" />
+              Menu
+            </button>
+          </div>
+        </div>
+      </header>
 
       <AnimatePresence>
         {isOpen && (
@@ -45,49 +89,69 @@ export function Navbar() {
             initial={{ x: "-100%" }}
             animate={{ x: 0 }}
             exit={{ x: "-100%" }}
-            transition={{ type: "tween", duration: 0.3 }}
-            className="fixed inset-0 z-50 bg-background border-r-4 border-primary"
+            transition={{ type: "tween", duration: 0.25 }}
+            className="fixed inset-0 z-50 bg-background lg:hidden"
           >
-            <div className="p-8 h-full flex flex-col">
-              <button
-                onClick={() => setIsOpen(false)}
-                className="brutal-btn self-start flex items-center gap-2 mb-12"
-              >
-                <X className="w-5 h-5" />
-                <span className="font-[family-name:var(--font-display)] text-lg">CLOSE</span>
-              </button>
+            <div className="border-b border-primary bg-white">
+              <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+                <span className="font-mono text-sm font-semibold tracking-widest text-foreground">
+                  BAARHAVI<span className="text-primary">_M_D</span>
+                </span>
+                <button
+                  onClick={() => setIsOpen(false)}
+                  suppressHydrationWarning
+                  className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-wider text-primary border border-primary px-3 py-2"
+                  aria-label="Close menu"
+                >
+                  <X className="w-4 h-4" />
+                  Close
+                </button>
+              </div>
+            </div>
 
-              <motion.h2 
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="font-[family-name:var(--font-display)] text-4xl text-primary mb-8 neon-text"
-              >
-                NAVIGATION
-              </motion.h2>
-
-              <nav className="flex flex-col gap-2">
+            <div className="h-[calc(100vh-4rem)] overflow-y-auto">
+              <nav className="max-w-7xl mx-auto px-4 sm:px-6 flex flex-col py-8">
                 {navItems.map((item, i) => (
                   <motion.a
                     key={item.name}
                     href={item.href}
-                    initial={{ opacity: 0, x: -50 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: i * 0.05 }}
+                    initial={{ opacity: 0, y: 12 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.08 * i }}
                     onClick={() => setIsOpen(false)}
-                    className="group flex items-center gap-4 py-3 border-b-2 border-muted hover:border-primary transition-colors"
+                    className="flex items-baseline gap-4 py-4 border-b border-border group"
                   >
-                    <span className="text-primary font-mono text-sm">0{i + 1}</span>
-                    <span className="font-[family-name:var(--font-display)] text-3xl md:text-5xl text-foreground group-hover:text-primary transition-colors glitch-text">
+                    <span className="font-mono text-xs text-primary">[{item.index}]</span>
+                    <span className="font-display text-3xl md:text-4xl font-bold uppercase tracking-wide text-foreground group-hover:text-primary transition-colors">
                       {item.name}
                     </span>
                   </motion.a>
                 ))}
-              </nav>
 
-              <div className="mt-auto flex gap-4">
-                <a href="https://github.com/BaarhaviGit" target="_blank" rel="noopener noreferrer" className="brutal-btn text-sm">GitHub</a>
-                <a href="https://linkedin.com/in/baarhavi-m-d" target="_blank" rel="noopener noreferrer" className="brutal-btn text-sm bg-accent">LinkedIn</a>
-              </div>
+                <div className="mt-10 flex flex-wrap gap-3">
+                  <a
+                    href="https://github.com/BaarhaviGit"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-mono text-xs uppercase tracking-wider text-primary border border-primary px-4 py-2.5 hover:bg-primary hover:text-white transition-colors"
+                  >
+                    GitHub
+                  </a>
+                  <a
+                    href="https://linkedin.com/in/baarhavi-m-d"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-mono text-xs uppercase tracking-wider text-primary border border-primary px-4 py-2.5 hover:bg-primary hover:text-white transition-colors"
+                  >
+                    LinkedIn
+                  </a>
+                </div>
+
+                <div className="mt-8 flex items-center gap-2 font-mono text-[11px] uppercase tracking-wider text-muted-foreground">
+                  <span className="w-2 h-2 rounded-full bg-accent animate-status-pulse" />
+                  Status · Open to opportunities
+                </div>
+              </nav>
             </div>
           </motion.div>
         )}

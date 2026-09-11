@@ -1,128 +1,100 @@
 "use client"
 
-import { motion, useInView } from "framer-motion"
-import { useRef } from "react"
-import { Building2, Calendar } from "lucide-react"
+import { motion } from "framer-motion"
+import { SectionHeader } from "@/components/section-header"
+import { GitCommitHorizontal } from "lucide-react"
 
 const experiences = [
   {
-    number: "02",
+    hash: "8mo · feat",
     title: "SOFTWARE ENGINEERING INTERN",
     company: "Praskla Technology",
     companyLink: "https://praskla-tech.netlify.app/",
-    duration: "8 Months",
-    description: "Worked on scalable web applications implementing REST APIs, authentication workflows, and database integration in agile environments.",
+    duration: "2025 — present",
+    description: "Shipped scalable web applications — REST APIs, authentication workflows, and database integration in agile environments.",
     technologies: ["React", "Node.js", "PostgreSQL", "REST APIs"],
   },
   {
-    number: "01",
+    hash: "int · secure",
     title: "CYBER SECURITY INTERN",
     company: "Zero Touch, Hyderabad",
-    duration: "Internship",
+    duration: "internship",
     description: "Gained exposure to vulnerability assessment, cyber threat analysis, and network security practices.",
     technologies: ["Vulnerability Assessment", "Network Security", "Threat Analysis"],
   },
 ]
 
 export function ExperienceSection() {
-  const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, margin: "-100px" })
-
   return (
-    <section id="experience" className="py-24 relative" ref={ref}>
-      {/* Section header */}
-      <div className="border-y-4 border-primary bg-primary py-4 mb-16">
-        <div className="max-w-7xl mx-auto px-4 flex items-center justify-between">
-          <motion.h2 
-            initial={{ opacity: 0, x: -20 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            className="font-[family-name:var(--font-display)] text-5xl sm:text-6xl text-primary-foreground"
-          >
-            EXPERIENCE
-          </motion.h2>
-        </div>
-      </div>
-
+    <section id="experience" className="py-24 relative">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Timeline */}
+        <SectionHeader index="05" title="EXPERIENCE" subtitle="commit log · chronology" />
+
+        {/* git log rail */}
         <div className="relative">
-          {/* Vertical line */}
-          <div className="absolute left-8 top-0 bottom-0 w-1 bg-primary" />
+          <div className="absolute left-[11px] top-2 bottom-2 w-px bg-border" />
 
-          {experiences.map((exp, index) => (
-            <motion.div
-              key={exp.title}
-              initial={{ opacity: 0, x: -30 }}
-              animate={isInView ? { opacity: 1, x: 0 } : {}}
-              transition={{ duration: 0.5, delay: index * 0.2 }}
-              className="relative flex gap-8 mb-12"
-            >
-              {/* Number bubble */}
-              <div className="relative z-10 flex-shrink-0">
-                <div className="w-16 h-16 bg-primary text-primary-foreground font-[family-name:var(--font-display)] text-2xl flex items-center justify-center border-4 border-background">
-                  {exp.number}
+          <div className="space-y-10">
+            {experiences.map((exp, index) => (
+              <motion.div
+                key={exp.title}
+                initial={{ opacity: 0, x: -16 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: index * 0.1 }}
+                className="relative flex gap-6"
+              >
+                {/* commit dot */}
+                <div className="relative z-10 flex-shrink-0">
+                  <div className="w-6 h-6 bg-white border-2 border-primary flex items-center justify-center mt-1">
+                    <GitCommitHorizontal className="w-3.5 h-3.5 text-primary" />
+                  </div>
                 </div>
-              </div>
 
-              {/* Content */}
-              <div className="comic-border bg-card p-6 flex-1">
-                <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-4">
-                  <div>
-                    <h3 className="font-[family-name:var(--font-display)] text-xl text-primary">
-                      {exp.title}
-                    </h3>
-                    <div className="flex items-center gap-2 text-muted-foreground text-sm mt-1">
-                      <Building2 size={14} />
+                <div className="flex-1">
+                  <div className="flex items-center gap-3 mb-3 flex-wrap">
+                    <span className="tech-tag text-[9px]">{exp.hash}</span>
+                    <span className="font-mono text-[11px] uppercase tracking-widest text-muted-foreground">
+                      {exp.duration}
+                    </span>
+                  </div>
+
+                  <div className="draft-card corner-marks p-6 hover:border-primary transition-colors">
+                    <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-3">
+                      <h3 className="font-display text-lg font-bold uppercase tracking-wide">
+                        {exp.title}
+                      </h3>
+                    </div>
+                    <p className="font-mono text-xs text-primary uppercase tracking-widest mb-3">
                       {exp.companyLink ? (
-                        <a href={exp.companyLink} target="_blank" rel="noopener noreferrer" className="text-secondary hover:underline">
+                        <a href={exp.companyLink} target="_blank" rel="noopener noreferrer" className="hover:underline">
                           {exp.company}
                         </a>
                       ) : (
-                        <span>{exp.company}</span>
+                        exp.company
                       )}
+                    </p>
+                    <p className="text-foreground/85 text-sm mb-4 leading-relaxed">
+                      {exp.description}
+                    </p>
+                    <div className="flex flex-wrap gap-2">
+                      {exp.technologies.map((tech) => (
+                        <span key={tech} className="tech-tag text-[9px]">
+                          {tech}
+                        </span>
+                      ))}
                     </div>
                   </div>
-                  <div className="flex items-center gap-1 text-xs text-muted-foreground bg-muted px-3 py-1">
-                    <Calendar size={12} />
-                    {exp.duration}
-                  </div>
                 </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
 
-                <p className="text-muted-foreground mb-4">
-                  {exp.description}
-                </p>
-
-                <div className="flex flex-wrap gap-2">
-                  {exp.technologies.map((tech, i) => (
-                    <span
-                      key={tech}
-                      className={`px-3 py-1 text-xs font-bold ${
-                        i % 3 === 0 ? "bg-primary text-primary-foreground" :
-                        i % 3 === 1 ? "bg-secondary text-secondary-foreground" :
-                        "bg-accent text-accent-foreground"
-                      }`}
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </motion.div>
-          ))}
-
-          {/* End marker */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0 }}
-            animate={isInView ? { opacity: 1, scale: 1 } : {}}
-            transition={{ duration: 0.3, delay: 0.8 }}
-            className="relative flex gap-8"
-          >
-            <div className="relative z-10 flex-shrink-0">
-              <div className="w-16 h-16 bg-secondary text-secondary-foreground font-[family-name:var(--font-display)] text-sm flex items-center justify-center border-4 border-background text-center leading-tight">
-                THE<br />START
-              </div>
-            </div>
-          </motion.div>
+        {/* end marker */}
+        <div className="mt-12 flex items-center gap-3 font-mono text-[11px] uppercase tracking-widest text-muted-foreground">
+          <span className="h-px w-10 bg-border" />
+          2 commits · HEAD @ the-start
         </div>
       </div>
     </section>

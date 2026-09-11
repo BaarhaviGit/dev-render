@@ -1,130 +1,126 @@
 "use client"
 
-import { motion, useInView } from "framer-motion"
-import { useRef } from "react"
+import { motion } from "framer-motion"
 import { GraduationCap } from "lucide-react"
+import { SectionHeader } from "@/components/section-header"
 
-const highlights = [
+const education = [
   {
-    icon: GraduationCap,
-    title: "B.E CSE (2023-2027)",
-    description: "K.S.R. College of Engineering",
-    detail: "CGPA: 8.5 (5th Semester)",
-    color: "bg-primary",
+    period: "2023 — 2027",
+    title: "B.E — Computer Science & Engineering",
+    org: "K.S.R. College of Engineering",
+    detail: "CGPA · 8.5 (5th Semester)",
   },
   {
-    icon: GraduationCap,
-    title: "HSC (2023)",
-    description: "Saraswathi Matric Hr. Sec. School",
-    detail: "Score: 88%",
-    color: "bg-secondary",
+    period: "2023",
+    title: "HSC — Higher Secondary",
+    org: "Saraswathi Matric Hr. Sec. School",
+    detail: "Score · 88%",
   },
   {
-    icon: GraduationCap,
-    title: "SSLC (2021)",
-    description: "G.E.T. School of Excellence",
-    detail: "Score: 74%",
-    color: "bg-accent",
+    period: "2021",
+    title: "SSLC — Secondary Education",
+    org: "G.E.T. School of Excellence",
+    detail: "Score · 74%",
   },
 ]
 
 export function AboutSection() {
-  const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, margin: "-100px" })
-
   return (
-    <section id="about" className="py-24 relative" ref={ref}>
-      {/* Section divider */}
-      <div className="border-y-4 border-primary bg-muted py-4 mb-16">
-        <div className="max-w-7xl mx-auto px-4 flex items-center justify-between">
-          <motion.h2 
-            initial={{ opacity: 0, x: -20 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            className="font-[family-name:var(--font-display)] text-5xl sm:text-6xl text-primary neon-text"
-          >
-            ABOUT ME
-          </motion.h2>
-          <div className="hidden sm:flex gap-2">
-            <div className="w-4 h-4 bg-primary" />
-            <div className="w-4 h-4 bg-secondary" />
-            <div className="w-4 h-4 bg-accent" />
-          </div>
-        </div>
-      </div>
+    <section id="about" className="py-24 relative">
+      <div className="absolute inset-y-0 left-1/2 w-px bg-border/60 pointer-events-none hidden lg:block" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <SectionHeader index="02" title="ABOUT ME" subtitle="entity · profile BAARHAVI" />
+
         <div className="grid lg:grid-cols-2 gap-12 items-start">
-          {/* Left - Text content */}
+          {/* LEFT — profile spec sheet */}
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.2 }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="corner-marks draft-card p-8"
           >
-            <div className="comic-border bg-card p-8 relative">
-              {/* Corner decorations */}
-              <div className="absolute -top-2 -left-2 w-6 h-6 bg-primary" />
-              <div className="absolute -top-2 -right-2 w-6 h-6 bg-secondary" />
-              <div className="absolute -bottom-2 -left-2 w-6 h-6 bg-accent" />
-              <div className="absolute -bottom-2 -right-2 w-6 h-6 bg-primary" />
-              
-              <p className="text-foreground text-lg leading-relaxed mb-6">
-                I am an <span className="text-primary font-bold">Aspiring Full Stack Developer</span> with expertise in 
-                <span className="text-primary font-bold"> Cloud</span> and <span className="text-secondary font-bold">DevOps</span>.
+            <div className="flex items-center justify-between border-b border-border pb-4 mb-6">
+              <p className="font-mono text-xs uppercase tracking-widest text-primary">
+                profile._sheet
               </p>
-              <div className="font-mono text-muted-foreground space-y-4">
-                <p>
-                  I am highly focused on building scalable, secure, and high-performance applications through modern development and deployment practices.
-                </p>
-                <p>
-                  Currently pursuing my B.E in Computer Science and Engineering at K.S.R. College of Engineering, actively seeking opportunities to apply my expertise in real-world software engineering environments.
-                </p>
-              </div>
-              
-              {/* Terminal decoration */}
-              <div className="mt-8 bg-background border-2 border-primary p-4 font-mono text-sm">
-                <div className="flex items-center gap-2 mb-2 border-b border-muted pb-2">
-                  <div className="w-3 h-3 rounded-full bg-secondary" />
-                  <div className="w-3 h-3 rounded-full bg-accent" />
-                  <div className="w-3 h-3 rounded-full bg-primary" />
-                  <span className="text-muted-foreground text-xs ml-2">terminal</span>
+              <p className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
+                obj. blk 01
+              </p>
+            </div>
+
+            <h3 className="font-display text-2xl font-bold uppercase mb-4">
+              Objective
+            </h3>
+            <p className="text-foreground text-lg leading-relaxed mb-4">
+              Aspiring{" "}
+              <span className="font-semibold text-primary">Full Stack Developer</span> with
+              expertise in <span className="font-semibold text-primary">Cloud</span> and{" "}
+              <span className="font-semibold text-secondary">DevOps</span> — building
+              scalable, secure, and high-performance applications with modern
+              development and deployment practices.
+            </p>
+
+            {/* Terminal block */}
+            <div className="mt-8 border border-border bg-white p-4">
+              <div className="flex items-center justify-between border-b border-border pb-2 mb-3">
+                <div className="flex items-center gap-1.5">
+                  <span className="w-2 h-2 rounded-full bg-secondary/80" />
+                  <span className="w-2 h-2 rounded-full bg-primary/80" />
+                  <span className="w-2 h-2 rounded-full bg-accent/80" />
                 </div>
-                <span className="text-primary">$</span>{" "}
-                <span className="text-accent">echo</span>{" "}
-                <span className="text-foreground">$OBJECTIVE</span>{" "}
-                <br />
-                <span className="text-secondary">"Build scalable, secure, and high-performance apps."</span>
-                <span className="animate-pulse text-primary">_</span>
+                <span className="font-mono text-[10px] text-muted-foreground">bash — build.sh</span>
               </div>
+              <p className="font-mono text-sm text-foreground leading-relaxed">
+                <span className="text-primary">$</span> ./deploy --profile baarhavi
+                <br />
+                <span className="text-accent">▸</span> objective: build &amp; scale
+                <br />
+                <span className="text-muted-foreground ml-4">→ shipping cloud-native systems</span>
+                <span className="text-secondary animate-pulse">_</span>
+              </p>
             </div>
           </motion.div>
 
-          {/* Right - Highlight cards */}
+          {/* RIGHT — education spec table */}
           <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="grid grid-cols-1 sm:grid-cols-2 gap-4"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.15 }}
           >
-            <div className="col-span-1 sm:col-span-2 mb-2">
-              <h3 className="font-[family-name:var(--font-display)] text-2xl text-primary neon-text">EDUCATION</h3>
+            <div className="flex items-center gap-3 mb-6">
+              <GraduationCap className="w-5 h-5 text-primary" />
+              <h3 className="font-display text-lg font-bold uppercase tracking-wide">
+                Education — Record
+              </h3>
             </div>
-            {highlights.map((item, index) => (
-              <motion.div
-                key={item.title}
-                initial={{ opacity: 0, y: 20 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.4, delay: 0.5 + index * 0.1 }}
-                className={`comic-border bg-card p-5 group hover:bg-muted transition-colors ${index === 0 ? 'sm:col-span-2' : ''}`}
-                style={{ transform: `rotate(${index % 2 === 0 ? -1 : 1}deg)` }}
-              >
-                <div className={`inline-flex p-3 ${item.color} text-background mb-3`}>
-                  <item.icon size={24} />
+
+            <div className="border border-border bg-white divide-y divide-border">
+              {education.map((item, i) => (
+                <div key={item.title} className="p-5 hover:bg-muted/60 transition-colors grid grid-cols-[auto_1fr] gap-4">
+                  <div className="flex flex-col items-center">
+                    <span className="w-2 h-2 bg-primary mt-1.5" />
+                    {i < education.length - 1 && <span className="w-px flex-1 bg-border mt-1" />}
+                  </div>
+                  <div className="pb-2">
+                    <p className="font-mono text-[10px] uppercase tracking-widest text-primary mb-1">
+                      {item.period}
+                    </p>
+                    <h4 className="font-semibold text-foreground mb-0.5">{item.title}</h4>
+                    <p className="text-sm text-muted-foreground mb-1.5">{item.org}</p>
+                    <span className="tech-tag text-[9px]">{item.detail}</span>
+                  </div>
                 </div>
-                <h3 className="font-[family-name:var(--font-display)] text-xl text-foreground mb-2">{item.title}</h3>
-                <p className="text-sm text-muted-foreground mb-1">{item.description}</p>
-                <p className="text-xs text-primary font-bold">{item.detail}</p>
-              </motion.div>
-            ))}
+              ))}
+            </div>
+
+            <p className="mt-6 font-mono text-xs text-muted-foreground uppercase tracking-widest">
+              status · actively seeking software engineering opportunities
+              <span className="text-accent ml-2">●</span>
+            </p>
           </motion.div>
         </div>
       </div>

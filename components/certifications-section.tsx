@@ -1,72 +1,73 @@
 "use client"
 
-import { motion, useInView } from "framer-motion"
-import { useRef } from "react"
+import { motion } from "framer-motion"
 import { Award } from "lucide-react"
+import { SectionHeader } from "@/components/section-header"
 
 const certifications = [
   {
+    code: "CRED-01",
     title: "AWS CERTIFIED CLOUD PRACTITIONER",
     issuer: "Amazon Web Services",
     description: "Fundamental understanding of AWS Cloud concepts, services, security, and pricing.",
-    color: "bg-accent",
+    tag: "ISSUED",
   },
   {
+    code: "CRED-02",
     title: "PRASKLA HACKATHON",
     issuer: "Praskla Technology",
     description: "Recognition for outstanding performance and innovative problem-solving.",
-    color: "bg-secondary",
+    tag: "AWARDED",
   },
   {
+    code: "CRED-03",
     title: "TNWISE HACKATHON",
     issuer: "TNWISE",
     description: "Participated and showcased innovative solutions in the state-level hackathon.",
-    color: "bg-primary",
+    tag: "AWARDED",
   },
 ]
 
 export function CertificationsSection() {
-  const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, margin: "-100px" })
-
   return (
-    <section id="certifications" className="py-24 relative" ref={ref}>
-      {/* Section header */}
-      <div className="border-y-4 border-primary bg-muted py-4 mb-16">
-        <div className="max-w-7xl mx-auto px-4 flex items-center justify-between">
-          <motion.h2 
-            initial={{ opacity: 0, x: -20 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            className="font-[family-name:var(--font-display)] text-5xl sm:text-6xl text-primary neon-text"
-          >
-            CERTIFICATIONS
-          </motion.h2>
-        </div>
-      </div>
+    <section id="certifications" className="py-24 relative">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+        <SectionHeader index="06" title="CREDENTIALS" subtitle="certificates · verification registry" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-3 gap-6">
           {certifications.map((cert, index) => (
             <motion.div
-              key={cert.title}
-              initial={{ opacity: 0, y: 30, rotate: -5 }}
-              animate={isInView ? { opacity: 1, y: 0, rotate: (index - 1) * 2 } : {}}
-              transition={{ duration: 0.5, delay: index * 0.15 }}
-              whileHover={{ rotate: 0, scale: 1.02 }}
-              className="comic-border bg-card overflow-hidden group"
+              key={cert.code}
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4, delay: index * 0.1 }}
+              className="draft-card group relative overflow-hidden hover:border-primary transition-colors"
             >
-              <div className={`h-2 ${cert.color}`} />
+              {/* top rule */}
+              <div className="h-1 bg-primary" />
+
               <div className="p-6">
-                <div className={`inline-flex p-3 ${cert.color} text-background mb-4`}>
-                  <Award size={24} />
+                <div className="flex items-start justify-between mb-5">
+                  <div className="w-10 h-10 border border-primary text-primary flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-colors">
+                    <Award size={20} />
+                  </div>
+                  {/* verification stamp */}
+                  <div className="rotate-6 border-2 border-secondary/70 text-secondary font-mono text-[9px] uppercase tracking-widest px-2 py-1 rounded-sm">
+                    ● {cert.tag}
+                  </div>
                 </div>
-                <h3 className="font-[family-name:var(--font-display)] text-xl text-foreground mb-2 group-hover:text-primary transition-colors">
+
+                <p className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground mb-2">
+                  {cert.code} · certif.
+                </p>
+                <h3 className="font-display text-lg font-bold uppercase leading-tight mb-2 group-hover:text-primary transition-colors">
                   {cert.title}
                 </h3>
-                <p className="text-sm text-primary mb-3 font-bold">
+                <p className="font-mono text-xs text-primary font-semibold uppercase tracking-wide mb-3">
                   {cert.issuer}
                 </p>
-                <p className="text-sm text-muted-foreground">
+                <p className="text-sm text-muted-foreground leading-relaxed">
                   {cert.description}
                 </p>
               </div>
